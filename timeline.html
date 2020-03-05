@@ -1,0 +1,40 @@
+<body ng-app="timeline" 
+     ng-controller="MainController">
+<header>
+	<nav>
+		<ul id="main_nav">
+			<li class="active all" 
+          ng-click="toggleAllActivities()">All</li>
+			<li ng-repeat="activity in activities" ng-class="[activity.class, activity.active]" ng-click="selectActivity(activity)">{{activity.text}}
+ </li>
+		</ul>
+		<ul id="nav_ctrl">
+			<li class="icon-up-open" data-title="Next"></li>
+			<li class="icon-down-open" data-title="Previous"></li>
+		</ul>
+	</nav>
+</header>
+<div >
+<div class="container" id="timeline_container">
+    <div class="page-header">
+        <h1 id="timeline">Alfredo Romeu</h1>
+        <h4 id="timeline">Long story short</h4>
+    </div>
+    <ul class="timeline">
+      <li ng-repeat="event in active_events | filter:isTypeActive(event)" ng-class-even="'timeline-inverted'" >
+        <div class="timeline-badge" ng-class="event.type">
+          <i class="glyphicon" ng-class="event.glyphicon"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">{{event.title}}</h4>
+            </div>
+            <div class="timeline-body">
+              <p>{{event.text}}</p>
+            </div>
+            <p ng-if="event.link"><small class="text-muted">Link: <a ng-href="{{event.link}}">{{event.link}}</a></small></p>
+          </div>
+      </li>
+    </ul>
+</div>
+</div>
+</body>
